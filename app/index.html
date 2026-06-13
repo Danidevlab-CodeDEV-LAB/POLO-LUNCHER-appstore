@@ -1,60 +1,226 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Appétit — FKA Apps</title>
-  <meta name="description" content="Appétit — An App Store-inspired catalog of free, tiny apps built with agentic engineering and vibecoding.">
-  <meta name="theme-color" content="#000000">
-  <link rel="canonical" href="https://apps.fka.dev">
-  <link rel="icon" type="image/svg+xml" href="logo.svg">
-  <link rel="stylesheet" href="style.css">
+  <title>POLO Appstore</title>
+  <style>
+    /* 기본 설정 */
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Noto Sans KR', sans-serif;
+      display: flex;
+      background-color: #f4f6f8;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* 사이드바 */
+    aside {
+      width: 240px;
+      background: #1f2937;
+      color: #f9fafb;
+      min-height: 100vh;
+      padding: 24px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: background 0.3s;
+    }
+
+    aside nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    aside nav ul li {
+      margin: 14px 0;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+
+    aside nav ul li:hover {
+      background: #374151;
+    }
+
+    aside input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 20px 0;
+      border-radius: 6px;
+      border: 1px solid #374151;
+      background: #111827;
+      color: #f9fafb;
+    }
+
+    aside label {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* 메인 콘텐츠 */
+    main {
+      flex: 1;
+      padding: 40px;
+      box-sizing: border-box;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    h1, h2 {
+      margin-top: 0;
+      font-weight: 600;
+    }
+
+    /* 배너 */
+    .banner {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff;
+      padding: 28px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      transition: transform 0.3s;
+    }
+
+    .banner:hover {
+      transform: translateY(-4px);
+    }
+
+    .banner h2 {
+      margin: 0 0 12px 0;
+      font-size: 22px;
+    }
+
+    .banner button {
+      background-color: #fff;
+      color: #4f46e5;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .banner button:hover {
+      background-color: #f3f4f6;
+    }
+
+    /* 앱 리스트 */
+    section ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    section ul li {
+      background-color: #fff;
+      padding: 16px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.2s, box-shadow 0.2s, background 0.3s, color 0.3s;
+    }
+
+    section ul li:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    }
+
+    /* 다크 모드 */
+    body.dark-mode {
+      background-color: #111827;
+      color: #e5e7eb;
+    }
+
+    body.dark-mode aside {
+      background-color: #0f172a;
+    }
+
+    body.dark-mode main {
+      background-color: #1e293b;
+    }
+
+    body.dark-mode section ul li {
+      background-color: #1f2937;
+      color: #e5e7eb;
+    }
+  </style>
 </head>
 <body>
-  <div class="app-store">
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-header">
-        <div class="search-box">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" placeholder="Search" id="searchInput">
+  <!-- Sidebar -->
+  <aside>
+    <nav>
+      <ul>
+        <strong><li>생산성</li></strong>
+        <strong><li>개발</li></strong>
+        <strong><li>이미지</li></strong>
+        <strong><li>게임</li></strong>
+        <strong><li>AI 툴</li></strong>
+        <li>앱 올리기</li>
+      </ul>
+    </nav>
+    <div>
+      <input type="text" placeholder="검색...">
+    </div>
+    <div>
+      <label>
+        <input type="checkbox" id="darkToggle"> 다크모드
+      </label>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main>
+    <section>
+      <h1>탐색</h1>
+      <div class="banner">
+        <h2>{Picked_app-name}</h2>
+        <p>{Picked_app-desc}</p>
+          <button>자세히 보기</button>
         </div>
       </div>
-      <nav class="sidebar-nav" id="sidebarNav"></nav>
-      <div class="sidebar-footer">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-          <svg class="theme-icon sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-          <svg class="theme-icon moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          <span class="theme-label">Light Mode</span>
-        </button>
-        <a href="https://fka.dev" target="_blank" rel="noopener" class="developer-info">
-          <img src="https://avatars.githubusercontent.com/u/196477?v=4" alt="Fatih Kadir Akin" class="developer-avatar">
-          <span class="developer-name">Fatih Kadir Akin</span>
-        </a>
-      </div>
-    </aside>
+    </section>
 
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- Best New Apps -->
+    <section>
+      <h2>최신 앱</h2>
+      <ul>
+        <li>{new-app1}</li>
+        <li>{new-app2}</li>
+        <li>{new-app3}</li>
+        <li>{new-app4}</li>
+        <li>{new-app5}</li>
+        <li>{new-app6}</li>
+      </ul>
+    </section>
 
-    <main class="content" id="content">
-      <button class="mobile-menu-fab" id="mobileMenuBtn" aria-label="Menu">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-      <button class="mobile-back-fab hidden" id="mobileBackBtn" aria-label="Back">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <div class="content-scroll" id="contentScroll"></div>
-    </main>
-  </div>
+    <!-- Best Paid Apps -->
+    <section>
+      <h2>사용자수가 제일 많은 앱</h2>
+      <ul>
+        <li>{many-user_app} <div btn><button>자세히 보기</button></div></li>
+      </ul>
+    </section>
 
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal" id="modal"></div>
-  </div>
+    <!-- Latest Must-Try Apps -->
+    <section>
+      <h2>The Latest Must-Try Apps</h2>
+      <p>앱 목록이 여기에 표시됩니다.</p>
+    </section>
+  </main>
 
-  <div class="brew-toast" id="brewToast">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34c759" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-    <span>Copied to clipboard!</span>
-  </div>
-
-  <script src="app.js"></script>
+  <script>
+    // 다크 모드 토글 기능
+    const darkToggle = document.getElementById('darkToggle');
+    darkToggle.addEventListener('change', () => {
+      document.body.classList.toggle('dark-mode', darkToggle.checked);
+    });
+  </script>
 </body>
 </html>
